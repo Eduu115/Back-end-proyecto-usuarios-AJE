@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import aje.model.Rol;
-import aje.model.Usuario;
-import aje.service.UsuarioService;
+import aje.model.entities.Rol;
+import aje.model.entities.Usuario;
+import aje.model.service.UsuarioService;
 
 @RestController
 @CrossOrigin(origins = "*")

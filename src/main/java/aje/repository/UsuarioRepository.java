@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import aje.model.Rol;
-import aje.model.Usuario;
+import aje.model.entities.Rol;
+import aje.model.entities.Usuario;
 
 public interface UsuarioRepository extends JpaRepository<Usuario, String>{
 	

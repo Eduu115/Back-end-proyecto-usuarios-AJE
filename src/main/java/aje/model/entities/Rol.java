@@ -1,4 +1,4 @@
-package aje.model;
+package aje.model.entities;
 
 public enum Rol {
 	

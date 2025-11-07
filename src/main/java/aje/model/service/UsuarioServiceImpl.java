@@ -1,4 +1,4 @@
-package aje.service;
+package aje.model.service;
 
 import java.util.List;
 
@@ -8,8 +8,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import aje.model.Rol;
-import aje.model.Usuario;
+import aje.model.entities.Rol;
+import aje.model.entities.Usuario;
 import aje.repository.UsuarioRepository;
 @Service
 public class UsuarioServiceImpl implements UsuarioService, UserDetailsService{

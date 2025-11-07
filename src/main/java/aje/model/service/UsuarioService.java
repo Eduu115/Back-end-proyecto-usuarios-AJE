@@ -1,9 +1,9 @@
-package aje.service;
+package aje.model.service;
 
 import java.util.List;
 
-import aje.model.Rol;
-import aje.model.Usuario;
+import aje.model.entities.Rol;
+import aje.model.entities.Usuario;
 
 public interface UsuarioService {
 	
