@@ -8,7 +8,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import aje.model.entities.Rol;
 import aje.model.entities.Usuario;
 import aje.repository.UsuarioRepository;
 @Service
