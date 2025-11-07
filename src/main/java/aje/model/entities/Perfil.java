@@ -15,16 +15,14 @@ import lombok.NoArgsConstructor;
 
 @AllArgsConstructor @NoArgsConstructor @Data @Builder
 @Entity
-@Table(name="PERFILES")
+@Table(name="perfiles")
 public class Perfil implements Serializable{
-	
 	
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@Column(name="ID_PERFIL")
+	@Column(name="id_perfil")
 	@GeneratedValue(strategy =GenerationType.IDENTITY )
-	
 	private int idPerfil;
 	private String nombre;
 
