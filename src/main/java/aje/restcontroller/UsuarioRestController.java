@@ -27,7 +27,7 @@ public class UsuarioRestController {
 		return ResponseEntity.ok(us.findAll());
 	}
 	
-	@GetMapping("/login")
+	@PostMapping("/login")
 	public ResponseEntity<?> login(@AuthenticationPrincipal Usuario usuario) {
 	    // Si llega aquí, ya está autenticado por Spring Security (HTTP Basic)
 		Usuario u = us.findByUsernamePassword(usuario.getUsername(), usuario.getPassword());
