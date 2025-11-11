@@ -13,8 +13,8 @@ import aje.model.entities.Perfil;
 import aje.model.service.PerfilServiceImplMy8;
 
 @RestController
-@RequestMapping("/perfiles")
 @CrossOrigin(origins="*")
+@RequestMapping("/perfiles")
 public class PerfilRestController {
 
 	@Autowired

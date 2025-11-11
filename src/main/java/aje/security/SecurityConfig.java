@@ -26,10 +26,8 @@ public class SecurityConfig {
             .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .cors(Customizer.withDefaults())
             .authorizeHttpRequests(auth -> auth
-                // Rutas públicas mínimas (ajusta a tu gusto)
-                .requestMatchers("/usuarios/login").permitAll()
-                // tu API (ajusta prefijos/rutas)
-                .requestMatchers("/perfiles/**","/usuarios/todos").hasRole("ADMIN")
+                .requestMatchers("/usuarios/login", "/usuarios/register").permitAll()
+                .requestMatchers("/perfiles/","/perfiles/**","/usuarios/").hasRole("ADMIN")
                 .requestMatchers("/usuarios/**").authenticated()
                 .anyRequest().authenticated()
             )
@@ -40,10 +38,10 @@ public class SecurityConfig {
     }
     @Bean
     AuthenticationProvider authenticationProvider(UserDetailsService uds) {
-        // usar constructor con UserDetailsService (no deprecado)
+//        usar constructor con UserDetailsService (no deprecado)
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider(uds);
- //       provider.setPasswordEncoder(encoder);
-  //      provider.setHideUserNotFoundExceptions(false); // opcional
+//        provider.setPasswordEncoder(encoder);
+//        provider.setHideUserNotFoundExceptions(false); // opcional
         return provider;
     }
    
