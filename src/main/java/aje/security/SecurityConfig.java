@@ -27,10 +27,10 @@ public class SecurityConfig {
             .cors(Customizer.withDefaults())
             .authorizeHttpRequests(auth -> auth
                 // Rutas públicas mínimas (ajusta a tu gusto)
-                .requestMatchers("/actuator/health", "/error", "/","/registro","/todos").permitAll()
+                .requestMatchers("/usuarios/login").permitAll()
                 // tu API (ajusta prefijos/rutas)
-                .requestMatchers("/api/perfiles/**","/rol/**").hasRole("ADMON")
-                .requestMatchers("/api/usuarios/**").authenticated()
+                .requestMatchers("/perfiles/**","/usuarios/todos").hasRole("ADMIN")
+                .requestMatchers("/usuarios/**").authenticated()
                 .anyRequest().authenticated()
             )
             .httpBasic(Customizer.withDefaults())

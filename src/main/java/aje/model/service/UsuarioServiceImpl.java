@@ -42,7 +42,7 @@ public class UsuarioServiceImpl implements UsuarioService, UserDetailsService{
 
 	@Override
 	public Usuario registrar(Usuario usuario) {
-
+        usuario.setPassword("{noop}"+usuario.getPassword());
 		return usuarioRepository.save(usuario);
 	}
 
