@@ -26,8 +26,8 @@ public class SecurityConfig {
             .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .cors(Customizer.withDefaults())
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/usuarios/login", "/usuarios/register").permitAll()
-                .requestMatchers("/perfiles/","/perfiles/**","/usuarios/").hasRole("ADMIN")
+                .requestMatchers("/usuarios/login", "/usuarios/registro").permitAll()
+                .requestMatchers("/perfiles/","/perfiles/**","/usuarios/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
             )
             .httpBasic(Customizer.withDefaults())
