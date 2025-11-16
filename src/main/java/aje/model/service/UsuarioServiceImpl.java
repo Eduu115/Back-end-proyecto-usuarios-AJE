@@ -1,6 +1,6 @@
 package aje.model.service;
 
-import java.time.LocalDate;
+import java.time.LocalDate;  
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,5 +70,20 @@ public class UsuarioServiceImpl implements UsuarioService, UserDetailsService{
 		
 		return u;
 	}
+
+	@Override
+	public Usuario actualizar(Usuario usuario) {
+	    return usuarioRepository.save(usuario); // save actualiza si el username ya existe
+	}
+
+	@Override
+	public int eliminarPorUsername(String username) {
+	    if (usuarioRepository.existsById(username)) {
+	    	usuarioRepository.deleteById(username);
+	        return 1;
+	    }
+	    return 0;
+	}
+
 
 }
