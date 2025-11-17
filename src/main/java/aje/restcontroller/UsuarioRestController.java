@@ -55,14 +55,14 @@ public class UsuarioRestController {
 		return ResponseEntity.ok().body(usuario);
 	}
 	
-	@PutMapping("/{username}")
+	@PutMapping("/actualizar/{username}")
 	public ResponseEntity<?> actualizar(@PathVariable String username, @RequestBody Usuario usuario) {
 	    usuario.setUsername(username);
 	    Usuario actualizado = us.actualizar(usuario);
 	    return ResponseEntity.ok(actualizado);
 	}
 
-	@DeleteMapping("/{username}")
+	@DeleteMapping("/eliminar/{username}")
 	public ResponseEntity<?> eliminar(@PathVariable String username) {
 	    int resultado = us.eliminarPorUsername(username);
 	    return ResponseEntity.ok(resultado); // 1=ok, 0=no existe
