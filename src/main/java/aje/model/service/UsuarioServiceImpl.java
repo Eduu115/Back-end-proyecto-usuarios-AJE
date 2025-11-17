@@ -19,6 +19,14 @@ public class UsuarioServiceImpl implements UsuarioService, UserDetailsService{
 	private UsuarioRepository usuarioRepository;
 	@Autowired
 	private PerfilService ps;
+	
+	private String withNoop(String raw) {
+	    if (raw.startsWith("{noop}")) {
+	        return raw;
+	    }
+	    String conNoop = "{noop}" + raw;
+	    return conNoop;
+	}
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -46,6 +54,7 @@ public class UsuarioServiceImpl implements UsuarioService, UserDetailsService{
 
 	@Override
 	public Usuario registrar(Usuario usuario) {
+	    usuario.setPassword(withNoop(usuario.getPassword()));
 		return usuarioRepository.save(usuario);
 	}
 
@@ -61,7 +70,7 @@ public class UsuarioServiceImpl implements UsuarioService, UserDetailsService{
 		
 		u.setNombre(udto.getNombre());
 		u.setEmail(udto.getEmail());
-		u.setPassword(udto.getPassword());
+	    u.setPassword(withNoop(udto.getPassword())); 
 		u.setUsername(udto.getUsername());
 		
 		u.setEnabled(1);
@@ -73,7 +82,8 @@ public class UsuarioServiceImpl implements UsuarioService, UserDetailsService{
 
 	@Override
 	public Usuario actualizar(Usuario usuario) {
-	    return usuarioRepository.save(usuario); // save actualiza si el username ya existe
+	    usuario.setPassword(withNoop(usuario.getPassword()));
+	    return usuarioRepository.save(usuario);
 	}
 
 	@Override
