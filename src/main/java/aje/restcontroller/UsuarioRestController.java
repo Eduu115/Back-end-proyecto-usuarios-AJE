@@ -1,5 +1,6 @@
 package aje.restcontroller;
 
+import java.time.LocalDate;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +17,10 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import aje.model.entities.Perfil;
 import aje.model.entities.Usuario;
 import aje.model.entities.UsuarioDtoRegister;
+import aje.model.service.PerfilService;
 import aje.model.service.UsuarioService;
 
 @RestController
@@ -28,6 +31,9 @@ public class UsuarioRestController {
 	@Autowired
 	private UsuarioService us;
 	
+	@Autowired
+	private PerfilService ps;
+
 	@GetMapping("/") // lo usamos para la pagina de gestion admin TODO: Proteger
 	public ResponseEntity<?> todos(){
 		return ResponseEntity.ok(us.findAll());
@@ -50,10 +56,15 @@ public class UsuarioRestController {
 	}
 	
 	@PostMapping("/registro/admin")
-	public ResponseEntity<?> registroAdmin(@RequestBody Usuario usuario){ // aqui no pasa nada por que nos lo dan con todos los datos
-		us.registrar(usuario);
-		return ResponseEntity.ok().body(usuario);
+	public ResponseEntity<?> registroAdmin(@RequestBody Usuario usuario){
+	    Perfil p = ps.findById(usuario.getPerfil().getIdPerfil());
+	    usuario.setPerfil(p);
+	    usuario.setEnabled(1);
+	    usuario.setFechaRegistro(LocalDate.now());
+	    Usuario guardado = us.registrar(usuario);
+	    return ResponseEntity.ok(guardado);
 	}
+
 	
 	@PutMapping("/actualizar/{username}")
 	public ResponseEntity<?> actualizar(@PathVariable String username, @RequestBody Usuario usuario) {
